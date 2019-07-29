@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="zh" xmlns:th="https://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Spring Security Example </title>
+</head>
+<body>
+<!--
+As you can see, this Thymeleaf template simply presents a form that captures a username and password and posts them to "/login".
+As configured, Spring Security provides a filter that intercepts that request and authenticates the user. If the user fails to authenticate,
+the page is redirected to "/login?error" and our page displays the appropriate error message.
+Upon successfully signing out, our application is sent to "/login?logout" and our page displays the appropriate success message.
+-->
+<div th:if="${param.error}">
+    Invalid username and password.
+</div>
+<div th:if="${param.logout}">
+    You have been logged out.
+</div>
+<form th:action="@{/login}" method="post">
+    <div><label> User Name : <input type="text" name="username"/> </label></div>
+    <div><label> Password: <input type="password" name="password"/> </label></div>
+    <div><input type="submit" value="Sign In"/></div>
+
+    <hr/>
+    <div>
+        With Github: <a href="/login/github">click here</a></div>
+</form>
+</body>
+</html>
